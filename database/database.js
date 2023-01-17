@@ -8,6 +8,7 @@ const uri = `mongodb://${process.env.HOSTNAME_IP}`;
 
 const client = new MongoClient(uri);
 
+//busca todos
 async function run() {
     try {
         await client.connect();
@@ -23,4 +24,20 @@ async function run() {
     }
 }
 
-run();
+//busca por texto
+async function search() {
+    try {
+        await client.connect();
+        const db = client.db('banco-deAnotacoes');
+        const anotacoes = db.collection('Anotacoes');
+
+        const resposta = await anotacoes.find({ $text: { $search: "segunda" } }).toArray();
+        resposta.forEach(result => {
+            console.log(result);
+        })
+    } finally {
+        await client.close();
+    }
+}
+
+search();
