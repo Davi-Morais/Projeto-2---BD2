@@ -12,8 +12,8 @@ const client = new MongoClient(uri);
 async function run() {
     try {
         await client.connect();
-        const db = client.db('banco-deAnotacoes');
-        const anotacoes = db.collection('Anotacoes');
+        const db = client.db(process.env.DB_NAME);
+        const anotacoes = db.collection(process.env.COLLECTION_NAME);
 
         const resposta = await anotacoes.find().toArray();
         resposta.forEach(result => {
