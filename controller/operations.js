@@ -2,6 +2,7 @@ const client = require('../database/database');
 
 //busca todos os documentos no banco
 const buscaTudo = async ()=> {
+    const array = [];
     try {
         await client.connect();
         const db = client.db(process.env.DB_NAME);
@@ -9,8 +10,9 @@ const buscaTudo = async ()=> {
 
         const resposta = await anotacoes.find().toArray();
         resposta.forEach(result => {
-            console.log(result);
+            array.push(result);
         })
+        console.log(array);
     } finally {
         await client.close();
     }
@@ -18,6 +20,7 @@ const buscaTudo = async ()=> {
 
 //busca por texto
 const busca_textual = async (pesquisa) => {
+    const array = [];
     try {
         await client.connect();
         const db = client.db(process.env.DB_NAME);
@@ -25,12 +28,16 @@ const busca_textual = async (pesquisa) => {
 
         const resposta = await anotacoes.find({ $text: { $search: pesquisa } }).toArray();
         resposta.forEach(result => {
-            console.log(result);
+            array.push(result);
         })
+        console.log(array);
+
     } finally {
         await client.close();
     }
+    return array;
 }
+
 
 //inserir documento
 //Tem que receber um objeto
@@ -45,10 +52,7 @@ const inserir_documento = async (anotacao)=> {
         client.close();
     }
 }
-const anotacao = {
-    titulo: "Novos jogos", 
-    conteudo: "Muitos rpgs novos em 2023, hein?"
-}
-inserir_documento(anotacao);
 
-module.exports = {buscaTudo, busca_textual};
+
+
+module.exports = {buscaTudo, busca_textual, inserir_documento};
