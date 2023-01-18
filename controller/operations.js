@@ -1,7 +1,7 @@
 const client = require('../database/database');
 
 //busca todos os documentos no banco
-const buscaTudo = async ()=> {
+const buscaTudo = async (req, res)=> {
     const array = [];
     try {
         await client.connect();
@@ -12,7 +12,7 @@ const buscaTudo = async ()=> {
         resposta.forEach(result => {
             array.push(result);
         })
-        console.log(array);
+        res.send(array);
     } finally {
         await client.close();
     }
@@ -86,14 +86,14 @@ const deletar_anotacao = async (req,res)=>{
         const retorno = await anotacoes.deleteOne({titulo: "Novos jogos"});
         
         //Verificar se algum usuário foi removido
-        if(retorno.deletedCount > 0){
-            res.status(200).send("Usuário removido");
-        }else{
-            res.status(400).send("Usuário não encontrado");
-        }
+        // if(retorno.deletedCount > 0){
+        //     res.status(200).send("Usuário removido");
+        // }else{
+        //     res.status(400).send("Usuário não encontrado");
+        // }
 
     }catch{
-        res.status(400).send('Falha ao listar');
+        //res.status(400).send('Falha ao listar');
     }finally{
         client.close();
     }
