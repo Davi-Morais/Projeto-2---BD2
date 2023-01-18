@@ -59,9 +59,9 @@ const inserir_documento = async (anotacao)=> {
 const atualizar_documento = async (req, res) => {
     try{
         await client.connect();
-        const pessoas = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
-        // const retorno = await pessoas.replaceOne({email:req.params.email}, req.body);
-        const retorno = await pessoas.replaceOne({conteudo: "Novo conteudo"}, {titulo: "Novos jogos", conteudo: "Novo conteudo"});
+        const anotacoes = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
+        
+        const retorno = await anotacoes.replaceOne({conteudo: "Novo conteudo"}, {titulo: "Novos jogos", conteudo: "Novo conteudo"});
         
         //Verificar se algum usuário foi removido
         if(retorno.modifiedCount > 0){
@@ -77,5 +77,27 @@ const atualizar_documento = async (req, res) => {
     }
 }
 
+//deletar anotacao
+const deletar_anotacao = async (req,res)=>{
+    try{
+        await client.connect();
+        const anotacoes = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
+        
+        const retorno = await anotacoes.deleteOne({titulo: "Novos jogos"});
+        
+        //Verificar se algum usuário foi removido
+        if(retorno.deletedCount > 0){
+            res.status(200).send("Usuário removido");
+        }else{
+            res.status(400).send("Usuário não encontrado");
+        }
+
+    }catch{
+        res.status(400).send('Falha ao listar');
+    }finally{
+        client.close();
+    }
+}
+deletar_anotacao();
 
 module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento};
