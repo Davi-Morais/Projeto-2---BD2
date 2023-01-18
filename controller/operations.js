@@ -54,5 +54,28 @@ const inserir_documento = async (anotacao)=> {
 }
 
 
+//atualizar documento
+//recebe documento
+const atualizar_documento = async (req, res) => {
+    try{
+        await client.connect();
+        const pessoas = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
+        // const retorno = await pessoas.replaceOne({email:req.params.email}, req.body);
+        const retorno = await pessoas.replaceOne({conteudo: "Novo conteudo"}, {titulo: "Novos jogos", conteudo: "Novo conteudo"});
+        
+        //Verificar se algum usuário foi removido
+        if(retorno.modifiedCount > 0){
+            res.status(200).send("Usuário Atualizado");
+        }else{
+            res.status(400).send("Usuário não encontrado");
+        }
 
-module.exports = {buscaTudo, busca_textual, inserir_documento};
+    }catch{
+        res.status(400).send('Falha ao listar');
+    }finally{
+        client.close();
+    }
+}
+
+
+module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento};
