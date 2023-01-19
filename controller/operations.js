@@ -87,21 +87,20 @@ const deletar_anotacao = async (req,res)=>{
         await client.connect();
         const anotacoes = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
         
-        const retorno = await anotacoes.deleteOne({titulo: "Novos jogos"});
+        const retorno = await anotacoes.deleteOne({titulo: req.params.title});
         
         //Verificar se algum usuário foi removido
-        // if(retorno.deletedCount > 0){
-        //     res.status(200).send("Usuário removido");
-        // }else{
-        //     res.status(400).send("Usuário não encontrado");
-        // }
+        if(retorno.deletedCount > 0){
+            res.status(200).send("Usuário removido");
+        }else{
+            res.status(400).send("Usuário não encontrado");
+        }
 
     }catch{
-        //res.status(400).send('Falha ao listar');
+        res.status(400).send('Falha ao listar');
     }finally{
         client.close();
     }
 }
-deletar_anotacao();
 
-module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento};
+module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento, deletar_anotacao};

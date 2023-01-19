@@ -19,6 +19,9 @@ app.post('/inserir', controller.inserir_documento);
 //atualizar anotacao:
 app.put('/atualizar/:title', controller.atualizar_documento);
 
+//deletar anotacao:
+app.delete('/deletar/:title', controller.deletar_anotacao);
+
 
 
 
