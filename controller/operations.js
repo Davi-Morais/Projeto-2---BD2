@@ -44,27 +44,28 @@ const busca_textual = async (req, res) => {
 
 //inserir documento
 //Tem que receber um objeto
-const inserir_documento = async (anotacao)=> {
+const inserir_documento = async (req, res)=> {
     try {
         await client.connect();
         const db = client.db(process.env.DB_NAME);
         const anotacoes = db.collection(process.env.COLLECTION_NAME);
 
-        await anotacoes.insertOne({ titulo: anotacao.titulo, conteudo: anotacao.conteudo });
+        await anotacoes.insertOne(req.body);
     }finally {
         client.close();
     }
+    res.redirect('/all');
 }
 
 
 //atualizar documento
-//recebe documento
+//recebe documento/objeto
 const atualizar_documento = async (req, res) => {
     try{
         await client.connect();
         const anotacoes = client.db(process.env.DB_NAME).collection(process.env.COLLECTION_NAME);
         
-        const retorno = await anotacoes.replaceOne({conteudo: "Novo conteudo"}, {titulo: "Novos jogos", conteudo: "Novo conteudo"});
+        const retorno = await anotacoes.replaceOne({titulo: req.params.title}, req.body);
         
         //Verificar se algum usuário foi removido
         if(retorno.modifiedCount > 0){
