@@ -19,23 +19,26 @@ const buscaTudo = async (req, res)=> {
 }
 
 //busca por texto
-const busca_textual = async (pesquisa) => {
+const busca_textual = async (req, res) => {
     const array = [];
     try {
         await client.connect();
         const db = client.db(process.env.DB_NAME);
         const anotacoes = db.collection(process.env.COLLECTION_NAME);
 
-        const resposta = await anotacoes.find({ $text: { $search: pesquisa } }).toArray();
-        resposta.forEach(result => {
-            array.push(result);
-        })
-        console.log(array);
-
+        const resposta = await anotacoes.find({ $text: { $search: req.params.buscar } }).toArray();
+        if(resposta.length > 0){
+            resposta.forEach(result => {
+                array.push(result);
+            })
+            res.send(array);
+        } else {
+            res.send('Nenhum resultado encontrado.');
+        }
+        
     } finally {
         await client.close();
     }
-    return array;
 }
 
 
