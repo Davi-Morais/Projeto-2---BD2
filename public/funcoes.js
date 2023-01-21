@@ -1,8 +1,11 @@
 const buscarTudo = async () => {
 
-    const all = await fetch('http://localhost:3000/all').then((res)=> res.json());
+    fetch('http://localhost:3000/all',{
+        method: 'GET',})
     
-    return all;
+    .then((res)=> res.json())
+    console.log(all);
+    
 }
 
 module.exports = buscarTudo;
