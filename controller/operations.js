@@ -16,6 +16,7 @@ const buscaTudo = async (req, res)=> {
     } finally {
         await client.close();
     }
+    return array;
 }
 
 //busca por texto
