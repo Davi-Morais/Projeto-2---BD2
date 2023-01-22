@@ -26,3 +26,23 @@ body {
     width: 65%;
     margin: 10px;
 }
+
+
+/* formulario de enviar anotacao */
+
+#enviar-anotacao {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    background-color: rgb(74, 74, 84);
+    color: aliceblue;
+    height: 100%;
+}
+#enviar-anotacao input {
+    width: 100%;
+}
+#enviar-anotacao button {
+    margin: 10px;
+    width: 70px;
+    cursor: pointer;
+}
