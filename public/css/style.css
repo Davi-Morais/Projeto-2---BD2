@@ -9,6 +9,12 @@ body {
     align-items: center;
 }
 
+header{
+    background-color:#3F4045;
+    width: 100%;
+    height: 40px;
+
+}
 
 #all_anotacoes {
     display: flex;
@@ -45,4 +51,35 @@ body {
     margin: 10px;
     width: 70px;
     cursor: pointer;
+}
+#btnmodal{
+    margin-top: 20px;
+    width: 202px;
+    height: 38px;
+    background-color:#355691;
+}
+
+#btnmodal:hover{
+    background-color:#5F5AA2;
+    transition: all 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transform: scale(1.1);
+}
+
+#salvar-anotacao{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+#salvar-anotacao:hover{
+    background-color:#ffffff;
+    transition: all 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transform: scale(1.1);
+}
+
+#modalExemplo{
+    text-align: center;
 }

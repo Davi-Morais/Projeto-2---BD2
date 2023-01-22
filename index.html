@@ -7,18 +7,22 @@
     <title>Suas Anotações!!</title>
 </head>
 <body>
-  
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
-      Adicionar nova Anotação
-  </button>
-  
+
+    <header></header>
+
+    <!-- Div para o Botão Adicionar anotação-->
+    <div id="btnAnotacao">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo" id="btnmodal">
+        Adicionar nova Anotação
+      </button>
+    </div>
 
     <!-- O modal com o formulário; -->
     <div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Preencha os espaços:</h5>
+              <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 180px;">Título do modal</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -27,9 +31,9 @@
                 <!-- O formulário para enviar anotacoes! -->
                 <form action="http://localhost:3000/inserir" method="post" id="enviar-anotacao">
                     <label for="POST-titulo">Titulo:</label>
-                    <input id="POST-titulo" type="text" name="titulo">
+                    <input id="POST-titulo" type="text" name="titulo"><br>
                     <label for="POST-conteudo">Conteudo:</label>
-                    <input id="POST-conteudo" type="text" name="conteudo">
+                    <input id="POST-conteudo" type="text" name="conteudo"><br>
                     <button type="submit" id="salvar-anotacao">Save</button>
                 </form>
 

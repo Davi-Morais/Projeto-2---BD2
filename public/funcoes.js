@@ -1,9 +1,12 @@
 async function pegar_todas_anotacoes(){
     let url = "http://localhost:3000/all"
 
-    const res = await fetch(url).then(res => res.json());
-
-    return res;
+    fetch('http://localhost:3000/all',{
+        method: 'GET',})
+    
+    .then((res)=> res.json())
+    console.log(all);
+    
 }
 
 
