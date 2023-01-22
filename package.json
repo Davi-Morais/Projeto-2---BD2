@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Davi-Morais/Projeto-2---BD2#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^4.13.0"
