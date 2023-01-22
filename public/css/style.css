@@ -54,6 +54,13 @@ header{
     margin-top: 15px;
 }
 
+#salvar-anotacao:hover{
+    background-color:#ffffff;
+    transition: all 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transform: scale(1.1);
+}
+
 #modalExemplo{
     text-align: center;
 }
