@@ -9,7 +9,7 @@ app.use(cors());
 
 //rotas da aplicacao ////////////////
 //buscar todas as anotacoes:
-app.get(/(todas|all)|(anotacoes)/, controller.buscaTudo);
+app.get('/all', controller.buscaTudo);
 
 //busca por texto:
 app.get('/textsearch/:buscar', controller.busca_textual);
