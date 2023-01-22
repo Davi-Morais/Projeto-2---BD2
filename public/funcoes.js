@@ -1,3 +1,4 @@
+const fs = require("fs");
 async function pegar_todas_anotacoes(){
     let url = "http://localhost:3000/all"
 
@@ -5,9 +6,7 @@ async function pegar_todas_anotacoes(){
         method: 'GET',})
     
     .then((res)=> res.json())
-    
 }
-
 
 async function carregar_todas_as_anotacoes() {
     const res = await pegar_todas_anotacoes();
