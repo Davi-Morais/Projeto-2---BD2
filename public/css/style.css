@@ -34,8 +34,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    background-color: rgb(74, 74, 84);
-    color: aliceblue;
+    /* background-color: rgb(74, 74, 84); */
+    color: black;
     height: 100%;
 }
 #enviar-anotacao input {
