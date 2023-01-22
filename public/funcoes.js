@@ -1,7 +1,7 @@
 async function pegar_todas_anotacoes(){
     let url = "http://localhost:3000/all"
 
-    fetch('http://localhost:3000/all',{
+    const all = fetch('http://localhost:3000/all',{
         method: 'GET',})
     
     .then((res)=> res.json())

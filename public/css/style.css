@@ -33,11 +33,15 @@ header{
     margin: 10px;
 }
 
-#btnmodal{
+#btnAnotacao{
     margin-top: 20px;
+}
+
+#btnmodal{
     width: 202px;
     height: 38px;
     background-color:#355691;
+
 }
 
 #btnmodal:hover{
