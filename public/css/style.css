@@ -1,0 +1,28 @@
+* {
+    padding: 0%;
+    margin: 0%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#all_anotacoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(132, 117, 117);
+
+    width: 80%;
+}
+
+.anotacao {
+    border: solid 2px black;
+    border-radius: 2px;
+    width: 65%;
+    margin: 10px;
+}
