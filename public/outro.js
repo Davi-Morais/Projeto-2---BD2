@@ -16,6 +16,7 @@ sampleForm.addEventListener("submit", async (e) => {
     let { serverDataResponse } = responseData;
 
     console.log(serverDataResponse);
+    document.location.reload(true);
   } catch (error) {
     console.error(error);
   }
@@ -43,3 +44,4 @@ async function postFormFieldsAsJson({ url, formData }) {
   
   return res.json();
 }
+
