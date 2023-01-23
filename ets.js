@@ -1,10 +1,10 @@
 let btn = document.querySelector('#listar');
-console.log(btn);
+//console.log(btn);
 
 
 
 
-const fs = require("fs");
+//const fs = require("fs");
 
 /*async function pegar_todas_anotacoes(){
     let url = "http://localhost:3000/all"

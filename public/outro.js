@@ -45,3 +45,43 @@ async function postFormFieldsAsJson({ url, formData }) {
   return res.json();
 }
 
+
+
+//form de pesquisa
+const pesquisaForm = document.getElementById("pesquisa_form");
+pesquisaForm.addEventListener('submit', async (e) => {
+
+  e.preventDefault();
+  const form = e.currentTarget;
+  let url = form.action;
+
+  const barraPesquisa = document.getElementsByName("buscar");
+  const valor = barraPesquisa[0].value;
+
+  const res = await fetch(url + valor);
+  const respostas = res.json();
+  console.log(respostas);
+
+  respostas.then((res) => {
+    const div_conteiner = document.getElementById('all_anotacoes');
+    div_conteiner.innerHTML = ` `;
+    res.forEach(element => {
+      console.log(element);
+
+      const titulo = element.titulo;
+      const conteudo = element.conteudo;
+
+      const div_anotacoes = document.createElement("div");
+      div_anotacoes.className = 'anotacao';
+      div_anotacoes.innerHTML += `<h3>${titulo}</h3><p>${conteudo}</p>`; 
+
+      div_conteiner.appendChild(div_anotacoes);
+      
+      
+    });
+
+
+  })
+});
+
+

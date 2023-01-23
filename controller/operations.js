@@ -34,12 +34,13 @@ const busca_textual = async (req, res) => {
             })
             res.send(array);
         } else {
-            res.send('Nenhum resultado encontrado.');
+            return res.send('Nenhum resultado encontrado.');
         }
         
     } finally {
         await client.close();
     }
+    return array;
 }
 
 

@@ -1,4 +1,4 @@
-const fs = require("fs");
+//const fs = require("fs");
 async function pegar_todas_anotacoes(){
     let url = "http://localhost:3000/all"
 
@@ -10,7 +10,7 @@ async function pegar_todas_anotacoes(){
 
 async function carregar_todas_as_anotacoes() {
     const res = await pegar_todas_anotacoes();
-    console.log(res);
+    //console.log(res);
     const div_conteiner = document.getElementById('all_anotacoes');
         
         //for usado para imprimir as anotacoes na tela:
