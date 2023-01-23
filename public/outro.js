@@ -49,6 +49,7 @@ async function postFormFieldsAsJson({ url, formData }) {
 
 //form de pesquisa
 const pesquisaForm = document.getElementById("pesquisa_form");
+
 pesquisaForm.addEventListener('submit', async (e) => {
 
   e.preventDefault();
@@ -58,30 +59,27 @@ pesquisaForm.addEventListener('submit', async (e) => {
   const barraPesquisa = document.getElementsByName("buscar");
   const valor = barraPesquisa[0].value;
 
-  const res = await fetch(url + valor);
-  const respostas = res.json();
-  console.log(respostas);
-
-  respostas.then((res) => {
+  const resposta = await fetch(url + valor).then(res=> res.json()).catch((res)=> {return null} );
+  
+  if(!resposta){
+    const div_conteiner = document.getElementById('all_anotacoes');
+    div_conteiner.innerHTML = `<p>Nada encontrado...</p>`;
+  } else {
     const div_conteiner = document.getElementById('all_anotacoes');
     div_conteiner.innerHTML = ` `;
-    res.forEach(element => {
+
+    resposta.forEach(element => {
       console.log(element);
-
-      const titulo = element.titulo;
-      const conteudo = element.conteudo;
-
-      const div_anotacoes = document.createElement("div");
-      div_anotacoes.className = 'anotacao';
-      div_anotacoes.innerHTML += `<h3>${titulo}</h3><p>${conteudo}</p>`; 
-
-      div_conteiner.appendChild(div_anotacoes);
-      
-      
+        const titulo = element.titulo;
+        const conteudo = element.conteudo;
+  
+        const div_anotacoes = document.createElement("div");
+        div_anotacoes.className = 'anotacao';
+        div_anotacoes.innerHTML += `<h3>${titulo}</h3><p>${conteudo}</p>`; 
+  
+        div_conteiner.appendChild(div_anotacoes);
     });
-
-
-  })
+  };
 });
 
 
