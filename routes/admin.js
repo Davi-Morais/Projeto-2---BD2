@@ -1,5 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const mongoose = require('mongoose')
+require('../models/Anotacao')
+const anotacao = mongoose.model('notas')
+
+
 
 router.get('/', (req, res)=>{
     res.render("admin/index")
@@ -14,7 +19,7 @@ router.get('/anotacoes/add', (req, res)=>{
 })
 
 router.post('/anotacoes/new', (req, res) =>{
-    
+
 })
 
 
