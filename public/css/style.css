@@ -72,6 +72,21 @@ header{
     transform: scale(1.1);
 }
 
+#listar{
+    width: 100px;
+    height: 30px;
+    border: 1px solid;
+}
+
+#listar:hover{
+    background-color:#5F5AA2;
+    transition: all 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+    transform: scale(1.1);
+    border: none;
+    border-radius: 5px;
+}
+
 #salvar-anotacao{
     width: 100px;
     height: 40px;

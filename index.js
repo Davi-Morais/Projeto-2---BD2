@@ -7,6 +7,10 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
+app.set('view engine', 'ejs');
+
+app.get('/home', controller.homeEJS);
+
 //rotas da aplicacao ////////////////
 //buscar todas as anotacoes:
 app.get('/all', controller.buscaTudo);

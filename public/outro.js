@@ -1,4 +1,4 @@
-const sampleForm = document.getElementById("enviar-anotacao");
+/*const sampleForm = document.getElementById("enviar-anotacao");
 
 sampleForm.addEventListener("submit", async (e) => {
   
@@ -44,4 +44,4 @@ async function postFormFieldsAsJson({ url, formData }) {
   
   return res.json();
 }
-
+*/

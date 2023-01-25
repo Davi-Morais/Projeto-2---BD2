@@ -1,5 +1,9 @@
 const client = require('../database/database');
 
+const homeEJS = (req, res) =>{
+    res.render('home');
+}
+
 //busca todos os documentos no banco
 const buscaTudo = async (req, res)=> {
     const array = [];
@@ -69,7 +73,7 @@ const atualizar_documento = async (req, res) => {
         const retorno = await anotacoes.replaceOne({titulo: req.params.title}, req.body);
         
         //Verificar se algum usuário foi removido
-        if(retorno.modifiedCount > 0){
+        if(retorno.modifiedCount > 0){ 
             res.status(200).send("Usuário Atualizado");
         }else{
             res.status(400).send("Usuário não encontrado");
@@ -104,4 +108,4 @@ const deletar_anotacao = async (req,res)=>{
     }
 }
 
-module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento, deletar_anotacao};
+module.exports = {buscaTudo, busca_textual, inserir_documento, atualizar_documento, deletar_anotacao, homeEJS};
