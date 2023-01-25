@@ -11,8 +11,7 @@ const anotacao = new Schema({
         type: String,
         required: true,
         weights: 1
-    },
-    name:'textIndex'
+    }
 })
 mongoose.model('notas', anotacao)
 anotacao.index({name:'textIndex'})

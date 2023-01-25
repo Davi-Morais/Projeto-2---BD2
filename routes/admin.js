@@ -19,7 +19,16 @@ router.get('/anotacoes/add', (req, res)=>{
 })
 
 router.post('/anotacoes/new', (req, res) =>{
+    const newAnotacao = {
+        titulo: req.body.titulo,
+        conteudo: req.body.conteudo
+    }
 
+    new anotacao(newAnotacao).save().then(()=>{
+        console.log("Anotação salva com sucesso")
+    }).catch((err)=>{
+        console.log("Erro ao salvar anotação")
+    })
 })
 
 
