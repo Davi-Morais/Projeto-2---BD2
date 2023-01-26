@@ -11,7 +11,12 @@ router.get('/', (req, res)=>{
 })
 
 router.get('/anotacoes', (req, res)=>{
-    res.render("admin/anotacoes")
+    anotacao.find().then((anotacoes)=>{
+        res.render("admin/anotacoes", {anotacoes: anotacoes})
+    }).catch((err)=>{
+        console.log("error")
+        res.redirect('/admin')
+    })
 })
 
 router.get('/anotacoes/add', (req, res)=>{
@@ -25,6 +30,7 @@ router.post('/anotacoes/new', (req, res) =>{
     }
 
     new anotacao(newAnotacao).save().then(()=>{
+        res.redirect('/admin/anotacoes')
         console.log("Anotação salva com sucesso")
     }).catch((err)=>{
         console.log("Erro ao salvar anotação")

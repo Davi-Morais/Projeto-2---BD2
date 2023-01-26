@@ -1,3 +1,16 @@
 <h2>Lista de anotações</h2>
 <hr>
-<a href="../admin/anotacoes/add"><button type="button" class="btn btn-outline-success">Nova Anotação</button></a>
+
+{{#each anotacoes}}
+    <div class="card">
+        <div class="card-body">
+            <h3 class="badge rounded-pill bg-light text-dark text-wrap" style= "font-size: 25px;">{{titulo}}</h3>
+            <h5>{{conteudo}}</h5>
+            <h6>{{_id}}</h6>
+        </div>
+    </div>
+{{else}}
+
+{{/each}}
+<br>
+<a href="/admin/anotacoes/add"><button type="button" class="btn btn-dark">Nova Anotação</button></a><br>
