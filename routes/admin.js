@@ -40,4 +40,16 @@ router.post('/anotacoes/new', (req, res) =>{
 
 
 
+router.post('/anotacoes/deletar', (req, res)=>{
+    anotacao.remove({_id: req.body.id}).then(()=>{
+        console.log("removido com sucesso!")
+        res.redirect('/admin/anotacoes')
+    }).catch((err)=>{
+        console.log("erro ao remover")
+        res.redirect('/admin/anotacoes')
+    })
+})
+
+
+
 module.exports = router
