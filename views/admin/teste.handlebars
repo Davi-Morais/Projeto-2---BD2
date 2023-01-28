@@ -1,0 +1,24 @@
+
+<div class="card">
+    <div class="card-body">
+        <form action="/admin/anotacoes/teste" method="POST">
+        <input type="text" name="query" placeholder="Search"> </textarea>
+        <button type="submit" name="buscar" class="btn btn-success"> Buscar</button>
+</form>
+    </div>
+</div>
+
+{{#each anotacoes}}
+    <div class="card">
+        <ul class= "mt-3">
+                <h3 style= "font-size: 25px; border-radius: 20px">{{titulo}}</h3><br>
+                <h5 style="font-size: 20px;">{{conteudo}}</h5><br>
+        </ul>
+    </div>
+{{else}}
+{{/each}}
+<br>
+
+<script>
+    
+</script>
