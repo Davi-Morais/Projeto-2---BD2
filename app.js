@@ -9,6 +9,7 @@ const dotenv = require("dotenv")
 const mongoose = require('mongoose')
 dotenv.config()
 
+
 //CONFIGURAÇÕES
     //BODY-PARSER
     app.use(bodyParser.urlencoded({extended: true}))

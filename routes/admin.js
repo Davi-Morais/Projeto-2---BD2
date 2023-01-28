@@ -6,6 +6,8 @@ const anotacao = mongoose.model('notas')
 
 
 
+
+
 //ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
     res.render("admin/anotacoes")
@@ -15,7 +17,7 @@ router.get('/anotacoes', (req, res)=>{
     anotacao.find().then((anotacoes)=>{
         res.render("admin/anotacoes", {anotacoes: anotacoes})
     }).catch((err)=>{
-        console.log("error")
+        console.log("error") 
         res.redirect('/admin')
     })
 })
@@ -84,24 +86,18 @@ router.post('/anotacoes/deletar', (req, res)=>{
 
 //ROTA PARA BUSCA TEXTUAL
 
-router.get('/anotacoes/getFruits', async (req, res)=>{
-    anotacao.find({
-        $text: {
-            $search: req.body.query
-        }
-    }, {
-        _id: 0,
-        __v: 0
-    }, function(err, data){
-        res.json(data)
-    }).then((anotacoes)=>{
-        res.render("admin/teste", {anotacoes: anotacoes})
-    }).catch((err)=>{
-        console.log("error")
-        res.redirect('/admin')
-    })
+router.get('/anotacoes/busca', (req, res)=>{
+    res.render("admin/teste")
 })
 
-
+router.post('/anotacoes/teste', async (req, res)=>{
+    const cursor = await anotacao.find( { $text: { $search: req.body.query} } ).then((anotacoes)=>{
+        res.render("admin/teste", {anotacoes: anotacoes})
+    }).catch((err)=>{
+        console.log("error") 
+        res.redirect('/admin')
+    })
+    console.log(cursor);
+})
 
 module.exports = router
