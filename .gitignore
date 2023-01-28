@@ -1,0 +1,5 @@
+# modulos da aplicacao:
+node_modules
+
+# arquivos .env:
+.env
