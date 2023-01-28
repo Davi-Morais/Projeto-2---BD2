@@ -4,8 +4,8 @@
 {{#each anotacoes}}
     <div class="card">
         <div class="card-body">
-            <h3 class="badge bg-secondary text-white text-wrap" style= "font-size: 25px; border-radius: 20px">{{titulo}}</h3><br>
-            <h5 class="text-dark text-wrap badge" style="font-size: 20px;">{{conteudo}}</h5><br>
+            <h3 class="badge text-dark text-wrap" style= "font-size: 25px; border-radius: 20px; background-color: #eff2f5">{{titulo}}</h3><br>
+            <h5 class="text-dark text-wrap badge" style="font-size: 20px; border-radius: 20px; background-color: #fefefe">{{conteudo}}</h5><br>
             <a href="/admin/anotacoes/edit/{{_id}}"><button class="btn btn-outline-success mt-3 bi bi-pencil-square" style="font-size:15px"></button></a>
             <form action="/admin/anotacoes/deletar" method="POST">
                 <input type="hidden" name="id" value = "{{_id}}">
