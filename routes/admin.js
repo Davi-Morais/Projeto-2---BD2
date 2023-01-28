@@ -83,52 +83,25 @@ router.post('/anotacoes/deletar', (req, res)=>{
 })
 
 //ROTA PARA BUSCA TEXTUAL
-router.get('/anotacoes/search', (req, res)=>{
-    res.render("admin/search")
+
+router.get('/anotacoes/getFruits', async (req, res)=>{
+    anotacao.find({
+        $text: {
+            $search: req.body.query
+        }
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, data){
+        res.json(data)
+    }).then((anotacoes)=>{
+        res.render("admin/teste", {anotacoes: anotacoes})
+    }).catch((err)=>{
+        console.log("error")
+        res.redirect('/admin')
+    })
 })
 
-router.post("/anotacoes/search", function(req, res) {
-    anotacao.find({
-      "$text": {
-        "$search": req.body.query
-      }
-    }, {
-      textScore: {
-        $meta: "textScore"
-      }
-    }, {
-      sort: {
-        textScore: {
-          $meta: "textScore"
-        }
-      }
-    })
-    }).toArray()
 
-
-    anotacoes.find({ $text: { $search: req.params.buscar } }).toArray();
-        if(resposta.length > 0){
-            resposta.forEach(result => {
-                array.push(result);
-            })
-            res.send(array);
-        } else {
-            res.send('Nenhum resultado encontrado.');
-        }
-
-
-  function pagelist(items) {
-    result = "<html><body><ul>";
-    items.forEach(function(item) {
-      itemstring = "<li>" + item._id + "<ul><li>" + item.textScore +
-        "</li><li>" + item.created + "</li><li>" + item.document +
-        "</li></ul></li>";
-      result = result + itemstring;
-    });
-    result = result + "</ul></body></html>";
-
-    return result;
-  }
-pagelist();
 
 module.exports = router
