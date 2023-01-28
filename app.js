@@ -45,5 +45,5 @@ app.use('/admin', admin)
 
 //Outer
 app.listen(3000, ()=>{
-    console.log("Servidor rodando: http://localhost:3000/admin")
+    console.log("Servidor rodando: http://localhost:3000/admin/anotacoes");
 })
