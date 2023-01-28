@@ -6,8 +6,9 @@ const anotacao = mongoose.model('notas')
 
 
 
+//ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
-    res.render("admin/index")
+    res.render("admin/anotacoes")
 })
 
 router.get('/anotacoes', (req, res)=>{
@@ -19,9 +20,13 @@ router.get('/anotacoes', (req, res)=>{
     })
 })
 
+
+//ROTAS PARA ADICIONAR
 router.get('/anotacoes/add', (req, res)=>{
     res.render("admin/add_anotacoes")
 })
+
+
 
 router.post('/anotacoes/new', (req, res) =>{
     const newAnotacao = {
@@ -37,9 +42,36 @@ router.post('/anotacoes/new', (req, res) =>{
     })
 })
 
+//ROTA PARA EDITAR
+router.get("/anotacoes/edit/:id", (req, res)=>{
+    anotacao.findOne({_id: req.params.id}).then((anotacao)=>{
+        res.render("admin/edit_anotacoes", {anotacao: anotacao})
+    }).catch((err)=>{
+        res.redirect("/admin/anotacoes")
+    })
+    
+})
+
+router.post("/anotacoes/edit", (req, res)=>{
+    anotacao.findOne({_id: req.body.id}).then((anotacao)=>{
+        anotacao.titulo = req.body.titulo
+        anotacao.conteudo = req.body.conteudo
+
+        anotacao.save().then(()=>{
+            console.log("Salvo com sucesso!")
+            res.redirect('/admin/anotacoes')
+        }).catch((err)=>{
+            console.log("Erro na linha 63", err)
+        })
 
 
+    }).catch((err)=>{
+        console.log('Erro linha 59', err)
+        res.redirect('/admin/anotacoes')
+    })
+})
 
+//ROTA PARA DELETAR
 router.post('/anotacoes/deletar', (req, res)=>{
     anotacao.remove({_id: req.body.id}).then(()=>{
         console.log("removido com sucesso!")
