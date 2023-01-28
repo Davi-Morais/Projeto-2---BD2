@@ -1,4 +1,3 @@
-const { json } = require('body-parser')
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
@@ -104,6 +103,32 @@ router.post("/anotacoes/search", function(req, res) {
         }
       }
     })
-    })
+    }).toArray()
+
+
+    anotacoes.find({ $text: { $search: req.params.buscar } }).toArray();
+        if(resposta.length > 0){
+            resposta.forEach(result => {
+                array.push(result);
+            })
+            res.send(array);
+        } else {
+            res.send('Nenhum resultado encontrado.');
+        }
+
+
+  function pagelist(items) {
+    result = "<html><body><ul>";
+    items.forEach(function(item) {
+      itemstring = "<li>" + item._id + "<ul><li>" + item.textScore +
+        "</li><li>" + item.created + "</li><li>" + item.document +
+        "</li></ul></li>";
+      result = result + itemstring;
+    });
+    result = result + "</ul></body></html>";
+
+    return result;
+  }
+pagelist();
 
 module.exports = router
