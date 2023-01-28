@@ -13,6 +13,10 @@ router.get('/', (req, res)=>{
     res.render("admin/anotacoes")
 })
 
+router.get('/admin', (req, res)=>{
+    res.render("admin/anotacoes")
+})
+
 router.get('/anotacoes', (req, res)=>{
     anotacao.find().then((anotacoes)=>{
         res.render("admin/anotacoes", {anotacoes: anotacoes})
