@@ -1,3 +1,4 @@
+const { json } = require('body-parser')
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
@@ -82,6 +83,27 @@ router.post('/anotacoes/deletar', (req, res)=>{
     })
 })
 
+//ROTA PARA BUSCA TEXTUAL
+router.get('/anotacoes/search', (req, res)=>{
+    res.render("admin/search")
+})
 
+router.post("/anotacoes/search", function(req, res) {
+    anotacao.find({
+      "$text": {
+        "$search": req.body.query
+      }
+    }, {
+      textScore: {
+        $meta: "textScore"
+      }
+    }, {
+      sort: {
+        textScore: {
+          $meta: "textScore"
+        }
+      }
+    })
+    })
 
 module.exports = router
