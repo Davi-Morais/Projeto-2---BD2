@@ -10,11 +10,7 @@ const anotacao = mongoose.model('notas')
 
 //ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
-    res.render("admin/anotacoes")
-})
-
-router.get('/admin', (req, res)=>{
-    res.render("admin/anotacoes")
+    res.redirect("admin/anotacoes")
 })
 
 router.get('/anotacoes', (req, res)=>{
