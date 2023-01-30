@@ -14,5 +14,9 @@ const anotacao = new Schema({
     },
     
 })
+anotacao.index({titulo: 2})
+anotacao.index({conteudo: 1})
 mongoose.model('notas', anotacao)
-anotacao.index({name:'textIndex'})
+
+
+
