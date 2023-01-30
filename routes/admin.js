@@ -91,13 +91,16 @@ router.get('/anotacoes/busca', (req, res)=>{
 })
 
 router.post('/anotacoes/teste', async (req, res)=>{
-    const cursor = await anotacao.find( { $text: { $search: req.body.query} } ).then((anotacoes)=>{
+    const cursor = await anotacao.find( 
+        {$text: { $search: req.body.query}}, 
+        {score: { $meta: "textScore" }}
+        )
+        .sort({ score : { $meta : 'textScore' } }).then((anotacoes)=>{
         res.render("admin/teste", {anotacoes: anotacoes})
     }).catch((err)=>{
         console.log("error") 
         res.redirect('/admin')
     })
-    console.log(cursor);
 })
 
 module.exports = router
