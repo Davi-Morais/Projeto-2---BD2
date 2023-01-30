@@ -2,7 +2,20 @@
 Segundo projeto da disciplina Banco de Dados 2.
 
 
-comando para criar index
+## Como usar essa aplicacao:
+
+1- Instale todos os pacotes necessários para que a aplicação funcione:
+```
+npm i
+```
+2- Crie um arquivo .env na raiz do repositório e coloque a url para seu banco do mongo:
+```
+MONGO_URL =
+```
+
+
+3- comando para criar index no banco mongo
+```
 db.notas.createIndex(
    {
      titulo: "text",
@@ -16,3 +29,4 @@ db.notas.createIndex(
      name: "TextIndex"
    }
  )
+ ```
