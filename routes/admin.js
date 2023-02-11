@@ -1,26 +1,13 @@
-const express = require('express')
-const router = express.Router()
-const mongoose = require('mongoose')
-require('../models/Anotacao')
-const anotacao = mongoose.model('notas')
-
-
-
-
+const express = require('express');
+const router = express.Router();
+const anotacao_controller = require('../controllers/anotacao_controller');
 
 //ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
-    res.redirect("admin/anotacoes")
+    res.redirect("admin/anotacoes");
 })
 
-router.get('/anotacoes', (req, res)=>{
-    anotacao.find().then((anotacoes)=>{
-        res.render("admin/anotacoes", {anotacoes: anotacoes})
-    }).catch((err)=>{
-        console.log("error") 
-        res.redirect('/admin')
-    })
-})
+router.get('/anotacoes', anotacao_controller.Mostrar);
 
 
 //ROTAS PARA ADICIONAR
@@ -28,21 +15,7 @@ router.get('/anotacoes/add', (req, res)=>{
     res.render("admin/add_anotacoes")
 })
 
-
-
-router.post('/anotacoes/new', (req, res) =>{
-    const newAnotacao = {
-        titulo: req.body.titulo,
-        conteudo: req.body.conteudo
-    }
-
-    new anotacao(newAnotacao).save().then(()=>{
-        res.redirect('/admin/anotacoes')
-        console.log("Anotação salva com sucesso")
-    }).catch((err)=>{
-        console.log("Erro ao salvar anotação")
-    })
-})
+router.post('/anotacoes/new', anotacao_controller.AdicionarNota)
 
 //ROTA PARA EDITAR
 router.get("/anotacoes/edit/:id", (req, res)=>{
