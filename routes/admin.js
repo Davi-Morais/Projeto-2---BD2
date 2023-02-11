@@ -86,21 +86,32 @@ router.post('/anotacoes/deletar', (req, res)=>{
 
 //ROTA PARA BUSCA TEXTUAL
 
-router.get('/anotacoes/busca', (req, res)=>{
-    res.render("admin/teste")
-})
-
 router.post('/anotacoes/teste', async (req, res)=>{
     const cursor = await anotacao.find( 
         {$text: { $search: req.body.query}}, 
         {score: { $meta: "textScore" }}
         )
         .sort({ score : { $meta : 'textScore' } }).then((anotacoes)=>{
-        res.render("admin/teste", {anotacoes: anotacoes})
+        res.render("admin/anotacoes", {anotacoes: anotacoes})
     }).catch((err)=>{
         console.log("error") 
         res.redirect('/admin')
     })
 })
+
+//ROTA PARA LOGIN E CADASTRO
+
+router.get('/login', (req, res)=>{
+
+    res.render("admin/login")
+
+})
+
+router.get('/cadastrar', (req, res)=>{
+
+    res.render("admin/cadastrar")
+
+})
+
 
 module.exports = router
