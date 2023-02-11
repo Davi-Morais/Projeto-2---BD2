@@ -16,6 +16,3 @@ const anotacao = new Schema({
 })
 anotacao.index({titulo: 'text', conteudo: 'text'})
 mongoose.model('notas', anotacao)
-
-
-

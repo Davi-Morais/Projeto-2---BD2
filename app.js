@@ -10,6 +10,8 @@ const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo');
 const session = require('express-session')
 const cookieParser = require('cookie-parser');
+const neo4j = require('neo4j-driver');
+
 
 
 dotenv.config()
@@ -51,6 +53,11 @@ dotenv.config()
         }).catch((err)=>{
             console.log("Houve um erro ao se conectar com o banco ", err)
         })
+
+    //conecctando ao neo4j
+
+    const driver = neo4j.driver(process.env.URi, neo4j.auth.basic(process.env.USER, process.env.PASSWORD));
+
 
     //PUBLIC
     app.use(express.static(path.join(__dirname, 'public')))

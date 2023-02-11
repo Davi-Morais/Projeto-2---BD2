@@ -12,6 +12,7 @@
     "express-session": "^1.17.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
+    "neo4j-driver": "^5.5.0",
     "node": "^19.4.0"
   },
   "devDependencies": {
