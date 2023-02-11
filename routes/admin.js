@@ -18,7 +18,7 @@ router.get('/', (req, res)=>{
 router.get('/cadastro', (req, res)=>{
     res.render("admin/cadastrar");
 })
-router.post('/NewCadastro', checkToken, usuario_controller.cadastrarUsuario)
+router.post('/NewCadastro',  usuario_controller.cadastrarUsuario)
 
 
 //LOGIN
