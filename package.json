@@ -1,28 +1,14 @@
 {
-  "name": "pj2-bd2",
-  "version": "1.0.0",
-  "description": "Segundo projeto da disciplina Banco de Dados 2.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Davi-Morais/Projeto-2---BD2.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Davi-Morais/Projeto-2---BD2/issues"
-  },
-  "homepage": "https://github.com/Davi-Morais/Projeto-2---BD2#readme",
   "dependencies": {
-    "axios": "^1.2.3",
-    "cors": "^2.8.5",
+    "body-parser": "^1.20.1",
+    "bootstrap-icons": "^1.10.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongodb": "^4.13.0",
+    "express-handlebars": "^6.0.6",
     "mongoose": "^6.8.4",
     "node": "^19.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

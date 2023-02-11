@@ -1,0 +1,12 @@
+<h2 class="p-3 mb-3 bg-dark bg-gradient text-white" style="border-radius: 10px;">Nova Anotação </h2>
+<div class="card">
+    <div class="card-body" style="font-size: large;">
+        <form action="/admin/anotacoes/new" method="POST">
+            <label for="titulo"><h5 class="card-title">Titulo: </h5> </label>
+            <input type="text" name="titulo" id="titulo" placeholder="Titulo da anotação" class="form-control"><br>
+            <label for="conteudo"><h5 class="card-title">Conteudo: </h5></label>
+            <input type="text" id="conteudo" name="conteudo" placeholder="Conteudo da anotação" class="form-control"><br>
+        <button type="submit" class="btn btn-dark">Criar Anotação</button><br>
+    </form>
+    </div>
+</div>

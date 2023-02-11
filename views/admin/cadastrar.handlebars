@@ -1,0 +1,33 @@
+<h1 style="text-align: center; border-radius: 30px" class="p-3 mb-3 bg-dark bg-gradient text-white">Área de Cadastro</h1>
+
+<div class="col-md-6 mx-auto mb-5">
+	<div class="card">
+		<div class="card-body">
+            <h1 style="text-align: center; border-radius: 30px">Crie sua conta</h1>
+		    <form action="/login/register" method="POST">
+                <div class="form-group mt-3" >
+                    <label for="inputEmail">Nome:</label>
+                    <input type="text" class="form-control" id="inputNome" placeholder="Digite o nome" name="nome">
+                </div>
+
+                <div class="form-group mt-3" >
+                    <label for="inputEmail">Email:</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHel" placeholder="Digite o email" name="email">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="inputPassword">Senha</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="senha">
+                </div>
+
+                <div class="form-group mt-3">
+                    <label for="confirmPassword">Confirme sua senha</label>
+                    <input type="password" class="form-control" id="confirmPassword" placeholder="Password" name="confirmarSenha" required>
+                </div><br>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Criar Conta</button>
+                </div>
+            </form>
+        </div>	
+	</div>
+</div>
