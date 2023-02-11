@@ -1,19 +1,22 @@
-<h1 style="text-align: center; border-radius: 30px" class="p-3 mb-3 bg-dark bg-gradient text-white">Área de Login</h1>
+{{#each errors}}
+    <div class="alert alert-danger">{{text}}</div>
+{{/each}}
 
+<h1 style="text-align: center; border-radius: 30px" class="p-3 mb-3 bg-dark bg-gradient text-white">Área de Login</h1>
 <div class="col-md-6 mx-auto mb-5">
 	<div class="card">
 		<div class="card-body">
-			<form action = "/login/login" method="POST">
+			<form action = "/admin/NewLogin" method="POST">
 
 				<input type="hidden" value='email' >
 
 				<div class="form-group mt-3">
 					<label for="inputEmail">Email</label>
-					<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+					<input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
 				</div>
 				<div class="form-group mt-3">
 					<label for="inputPassword">Senha</label>
-					<input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="senha">
+					<input type="password" class="form-control" id="inputPassword1" placeholder="Password" name="senha" required>
 				</div>
 				<div class="form-group mt-3">
 					<button type="submit" class="btn btn-outline-primary">Entrar</button>
@@ -22,26 +25,5 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-{{!-- {{#each anotacoes}}
-    <div class="card">
-        <div class="card-body">
-            <h3 class="badge text-dark text-wrap" style= "font-size: 25px; border-radius: 20px; background-color: #eff2f5">{{titulo}}</h3><br>
-            <h5 class="text-dark text-wrap badge" style="font-size: 20px; border-radius: 20px; background-color: #fefefe">{{conteudo}}</h5><br>
-            <a href="/admin/anotacoes/edit/{{_id}}"><button class="btn btn-outline-success mt-3 bi bi-pencil-square" style="font-size:15px"></button></a>
-            <form action="/admin/anotacoes/deletar" method="POST">
-                <input type="hidden" name="id" value = "{{_id}}">
-                <button class="btn btn-outline-danger mt-2 bi bi-file-earmark-x-fill" type="submit" style="font-size:15px"></button>
-            </form>
-        </div>
-    </div>
-{{else}}
-    
-{{/each}} --}}
 
 

@@ -9,6 +9,19 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/admin/anotacoes">Home</a>
         </li>
+        {{#if user}}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/logOut">Sair</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/cadastro">Cadastrar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin/login">Entrar</a>
+        </li>
+        {{/if}}
+        
       </ul>
     </div>
   </div>

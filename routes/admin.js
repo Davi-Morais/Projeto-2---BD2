@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const anotacao_controller = require('../controllers/anotacao_controller');
 const usuario_controller = require('../controllers/usuario_controller');
+const middleware = require('../middlewares/middleware');
+const {checkToken} = require('../middlewares/middleware');
+router.use(middleware.middlewareGlobal, );
+
 
 //ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
@@ -10,17 +14,21 @@ router.get('/', (req, res)=>{
 
 //ROTAS PARA CADASTRO E LOGIN
 
+//CADASTRO
 router.get('/cadastro', (req, res)=>{
     res.render("admin/cadastrar");
 })
-
-router.post('/NewCadastro', usuario_controller.cadastrarUsuario)
-
+router.post('/NewCadastro', checkToken, usuario_controller.cadastrarUsuario)
 
 
+//LOGIN
 router.get('/login', (req, res)=>{
     res.render("admin/login");
 })
+router.post('/NewLogin', usuario_controller.logarUsuario)
+
+router.get('/logOut', checkToken, usuario_controller.logOutUsuario)
+
 
 router.get('/anotacoes', anotacao_controller.Mostrar);
 
@@ -29,7 +37,7 @@ router.get('/anotacoes', anotacao_controller.Mostrar);
 router.get('/anotacoes/add', (req, res)=>{
     res.render("admin/add_anotacoes")
 })
-router.post('/anotacoes/new', anotacao_controller.AdicionarNota)
+router.post('/anotacoes/new', checkToken, anotacao_controller.AdicionarNota)
 
 
 //ROTA PARA EDITAR

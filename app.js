@@ -10,6 +10,8 @@ const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo');
 const session = require('express-session')
 const cookieParser = require('cookie-parser');
+
+
 dotenv.config()
 
 
@@ -31,9 +33,9 @@ dotenv.config()
     //SESSIONS 
     const sessionOptions = session({
         secret: process.env.SECRET,
-        store: MongoStore.create({ mongoUrl: process.env.CONNECTIONSTRING }),
-        resave: true,
-        saveUninitialized: true,
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URL}),
+        resave: false,
+        saveUninitialized: false,
         cookie: {
             maxAge: 1000 * 60 * 60 * 24 * 7,
             httpOnly: true
@@ -55,10 +57,11 @@ dotenv.config()
 
 
 //ROTAS
-app.use('/admin', admin)
 app.use(sessionOptions);
-// app.use(middlewareGlobal);
 app.use(cookieParser());
+app.use('/admin', admin)
+
+
 
 
 //Outer
