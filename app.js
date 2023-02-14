@@ -42,6 +42,9 @@ dotenv.config()
         }
     });
 
+
+
+    
     //CONECTANDO NO BANCO
 
         mongoose.Promise = global.Promise
