@@ -13,9 +13,7 @@ exports.Mostrar = async(req, res)=>{
         const resultado = await sessionAura.run(`MATCH (p:Person) WHERE p.email = "${email}" OPTIONAL MATCH (p)-[:CRIOU]->(a:Annotation) RETURN a.id`);
         const ids = resultado.records.map(record => record.get('a.id'));
 
-        console.log(ids);
-
-        anotacao.find({ id: { $in: ids } }).then(anotacoes => {
+        anotacao.find({ idHash: { $in: ids } }).then(anotacoes => {
         res.render("admin/anotacoes", { anotacoes });
         }).catch(err => {
         console.log("Erro ao buscar anotações: ", err);
