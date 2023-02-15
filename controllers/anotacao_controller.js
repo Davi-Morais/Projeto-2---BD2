@@ -115,18 +115,43 @@ exports.DeletarNota = async(req, res)=>{
     })
 }
 
-exports.BuscarNota = async(req, res)=>{
-    const cursor = await anotacao.find( 
-        {$text: { $search: req.body.query}}, 
-        {score: { $meta: "textScore" }}
-        )
-        .sort({ score : { $meta : 'textScore' } }).then((anotacoes)=>{
-        res.render("admin/anotacoes", {anotacoes: anotacoes})
-    }).catch((err)=>{
-        console.log("error") 
-        res.redirect('/admin')
-    })
-}
+exports.BuscarNota = async (req, res) => {
+    
+    try{
+        const email = req.session.user.email;
+  
+        const resultado = await sessionAura.run(`MATCH (p:Person) WHERE p.email = "${email}" OPTIONAL MATCH (p)-[:CRIOU]->(a:Annotation) RETURN a.id`);
+        const ids = resultado.records.map(record => record.get('a.id'));
+    
+        const cursor = await anotacao.find({
+            idHash: { $in: ids },
+            $text: { $search: req.body.query }
+        }, {
+            score: { $meta: "textScore" }
+        })
+        .sort({ score: { $meta: 'textScore' } })
+        .then((anotacoes) => {
+            res.render("admin/anotacoes", { anotacoes: anotacoes })
+        }).catch((err) => {
+            console.log("Erro ao buscar anotações: ", err);
+            res.redirect('/admin')
+        })
+    }
 
+    catch(e){
+        const cursor = await anotacao.find( 
+            {$text: { $search: req.body.query}}, 
+            {score: { $meta: "textScore" }}
+            )
+            .sort({ score : { $meta : 'textScore' } }).then((anotacoes)=>{
+            res.render("admin/anotacoes", {anotacoes: anotacoes})
+        }).catch((err)=>{
+            console.log("error") 
+            res.redirect('/admin')
+        })
+    }
+    
+}
+  
 
 //MATCH p=()-[:CRIOU]->() RETURN p;
