@@ -1,29 +1,38 @@
 <div class="card mt-3">
     <h2 class="p-3 mb-3 bg-dark bg-gradient text-white" style="border-radius: 10px;">Lista de anotações</h2> 
-    <form action="/admin/anotacoes/buscaTextual" method="POST">
-        <input type="text" name="query" placeholder="Search" style="margin-left: 15px;"> </textarea>
-        <button type="submit" name="buscar" class="btn btn-success" style="margin-bottom: 5px;" > Buscar</button>
-        <a href="/admin/anotacoes/add"><button type="button" class="btn btn-dark" style="margin-left: 5%; margin-bottom: 5px;">Nova Anotação</button></a>
-    </form>
+    {{#if user}}
+        <form action="/admin/anotacoes/buscaTextual" method="POST">
+            <input type="text" name="query" placeholder="Search" style="margin-left: 15px;"> </textarea>
+            <button type="submit" name="buscar" class="btn btn-success" style="margin-bottom: 5px;" > Buscar</button>
+            <a href="/admin/anotacoes/add"><button type="button" class="btn btn-dark" style="margin-left: 5%; margin-bottom: 5px;">Nova Anotação</button></a>
+        </form>
+
+    {{else}}
+        <form>
+            <input type="text" name="query" placeholder="Search" style="margin-left: 15px;"> </textarea>
+            <button class="btn btn-success" style="margin-bottom: 5px;" ><a href="/admin/login" style="text-decoration: none; color:white" > Buscar </a></button>
+            <a href="/admin/anotacoes/login"><button type="button" class="btn btn-dark" style="margin-left: 5%; margin-bottom: 5px;">Nova Anotação</button></a>
+        </form>
+    {{/if}}
 </div>
 
 <hr>
 {{#if user}}
-{{#each anotacoes}}
-    <div class="card">
-        <div class="card-body">
-            <h3 class="badge text-dark text-wrap" style= "font-size: 25px; border-radius: 20px; background-color: #eff2f5">{{titulo}}</h3><br>
-            <h5 class="text-dark text-wrap badge" style="font-size: 20px; border-radius: 20px; background-color: #fefefe">{{conteudo}}</h5><br>
-            <a href="/admin/anotacoes/edit/{{_id}}"><button class="btn btn-outline-success mt-3 bi bi-pencil-square" style="font-size:15px"></button></a>
-            <form action="/admin/anotacoes/deletar" method="POST">
-                <input type="hidden" name="id" value = "{{_id}}">
-                <input type="hidden" name="idHash" value="{{idHash}}">
-                <button class="btn btn-outline-danger mt-2 bi bi-file-earmark-x-fill" type="submit" style="font-size:15px"></button>
-            </form>
+    {{#each anotacoes}}
+        <div class="card">
+            <div class="card-body">
+                <h3 class="badge text-dark text-wrap" style= "font-size: 25px; border-radius: 20px; background-color: #eff2f5">{{titulo}}</h3><br>
+                <h5 class="text-dark text-wrap badge" style="font-size: 20px; border-radius: 20px; background-color: #fefefe">{{conteudo}}</h5><br>
+                <a href="/admin/anotacoes/edit/{{_id}}"><button class="btn btn-outline-success mt-3 bi bi-pencil-square" style="font-size:15px"></button></a>
+                <form action="/admin/anotacoes/deletar" method="POST">
+                    <input type="hidden" name="id" value = "{{_id}}">
+                    <input type="hidden" name="idHash" value="{{idHash}}">
+                    <button class="btn btn-outline-danger mt-2 bi bi-file-earmark-x-fill" type="submit" style="font-size:15px"></button>
+                </form>
+            </div>
         </div>
-    {{else}}
-        <h4 class="p-3 mb-3 bg-gradient text-black" style="border-radius: 10px;">Faça login para ver as anotações!</h4> 
     {{/each}}
 {{else}}
-
+    <h4 class="p-3 mb-3 bg-gradient text-black" style="border-radius: 10px;">Faça login para ver as anotações!</h4> 
+{{/if}}
 

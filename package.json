@@ -15,10 +15,6 @@
     "mongoose": "^6.8.4",
     "neo4j-driver": "^5.5.0",
     "node": "^19.4.0"
-    "neo4j-driver": "^5.5.0",
-    "node": "^19.4.0",
-    "pip": "^0.0.1",
-    "pip3": "^420.911.69"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
