@@ -12,10 +12,11 @@ const anotacao = new Schema({
         required: true,
         weights: 1
     },
+    idHash:{
+        type: String,
+        required: true
+    }
     
 })
 anotacao.index({titulo: 'text', conteudo: 'text'})
 mongoose.model('notas', anotacao)
-
-
-

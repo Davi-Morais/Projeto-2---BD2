@@ -12,6 +12,7 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser');
 
 
+
 dotenv.config()
 
 
@@ -55,6 +56,7 @@ dotenv.config()
             console.log("Houve um erro ao se conectar com o banco ", err)
         })
 
+
     //PUBLIC
     app.use(express.static(path.join(__dirname, 'public')))
 
@@ -63,6 +65,7 @@ dotenv.config()
 app.use(sessionOptions);
 app.use(cookieParser());
 app.use('/admin', admin)
+
 
 
 

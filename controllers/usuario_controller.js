@@ -1,4 +1,5 @@
 const Usuario = require("../models/usuario");
+const {sessionAura} = require('../db/Neo4jDatabase');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -32,6 +33,14 @@ exports.cadastrarUsuario = async(req,res) =>{
             email: email,
             senha: password
         });
+
+        try {
+            const resultado = await sessionAura.run(`CREATE (p: Person{email: '${email}'})`);
+            sessionAura.close();
+      
+        }catch (error) {
+            console.error(error);
+        } 
 
         try{
             await novoUsuario.save();

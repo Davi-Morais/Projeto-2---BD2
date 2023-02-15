@@ -4,12 +4,12 @@ const anotacao_controller = require('../controllers/anotacao_controller');
 const usuario_controller = require('../controllers/usuario_controller');
 const middleware = require('../middlewares/middleware');
 const {checkToken} = require('../middlewares/middleware');
-router.use(middleware.middlewareGlobal, );
+router.use(middleware.middlewareGlobal );
 
 
 //ROTAS PARA PAG PRINCIPAL
 router.get('/', (req, res)=>{
-    res.redirect("./admin/cadastro");
+    res.redirect(".//admin/cadastro");
 })
 
 //ROTAS PARA CADASTRO E LOGIN
@@ -18,7 +18,7 @@ router.get('/', (req, res)=>{
 router.get('/cadastro', (req, res)=>{
     res.render("admin/cadastrar");
 })
-router.post('/NewCadastro', usuario_controller.cadastrarUsuario)
+router.post('/NewCadastro',  usuario_controller.cadastrarUsuario)
 
 
 //LOGIN
@@ -51,5 +51,6 @@ router.post('/anotacoes/deletar', anotacao_controller.DeletarNota)
 
 //ROTA PARA BUSCA TEXTUAL
 router.post('/anotacoes/buscaTextual', anotacao_controller.BuscarNota)
+
 
 module.exports = router
