@@ -8,7 +8,7 @@ Segundo projeto da disciplina Banco de Dados 2.
 ```
 npm i
 ```
-2- Crie um arquivo .env na raiz do repositório e coloque a url para seu banco do mongo e neo4j:
+2- Crie um arquivo .env na raiz do repositório e coloque a url para seu banco do mongo e colocar a uri, o user e o password do seu banco neo4j:
 ```
 MONGO_URL =
 SECRET =
