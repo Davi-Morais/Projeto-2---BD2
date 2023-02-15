@@ -79,7 +79,6 @@ exports.EditandoNota = async(req, res)=>{
 exports.DeletarNota = async(req, res)=>{
 
     try {
-        console.log(req.body.idHash);
         const resultado = await sessionAura.run(`MATCH (a:Annotation {id: '${req.body.idHash}'}) DETACH DELETE a`);
         console.log("Nó deletado com sucesso ");
       } catch (error) {
