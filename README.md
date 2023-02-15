@@ -11,6 +11,10 @@ npm i
 2- Crie um arquivo .env na raiz do repositório e coloque a url para seu banco do mongo:
 ```
 MONGO_URL =
+SECRET =
+URI =
+USER =
+PASSWORD =
 ```
 
 
