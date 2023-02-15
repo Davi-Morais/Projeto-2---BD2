@@ -19,6 +19,9 @@ exports.AdicionarNota = async(req, res)=>{
     const idBytes = crypto.randomBytes(8); // 8 bytes (64 bits) é suficiente para uma baixa chance de colisão
     const idHash = crypto.createHash('sha256').update(idBytes).digest('hex');
 
+    email = req.session.user.email;
+    console.log(email);
+
     const newAnotacao = {
         titulo: req.body.titulo,
         conteudo: req.body.conteudo,
@@ -27,18 +30,25 @@ exports.AdicionarNota = async(req, res)=>{
 
     try {
         const result = await sessionAura.run(`CREATE (a: Annotation{id: '${idHash}'})`);
-        sessionAura.close();
   
     }catch (error) {
         console.error(error);
     } 
 
     new anotacao(newAnotacao).save().then(()=>{
-        res.redirect('/admin/anotacoes')
         console.log("Anotação salva com sucesso")
     }).catch((err)=>{
         console.log("Erro ao salvar anotação")
     })
+
+    try {
+        const result = await sessionAura.run(`MATCH (p: Person{email: "${email}"}) OPTIONAL MATCH (n: Annotation{id: "${idHash}"}) CREATE (p)-[:CRIOU]->(n)`);
+        sessionAura.close();
+    }catch (error) {
+        console.error(error);
+    } 
+
+    res.redirect('/admin/anotacoes');
 }
 
 exports.GetIDNota = async(req, res)=>{
@@ -69,6 +79,15 @@ exports.EditandoNota = async(req, res)=>{
 }
 
 exports.DeletarNota = async(req, res)=>{
+
+    try {
+        const result = await sessionAura.run(`MATCH (a:Annotation {id: '${req.body.id}'}) DETACH DELETE a`);
+        sessionAura.close();
+        console.log("Nó deletado com sucesso ");
+      } catch (error) {
+        console.error(error);
+    }
+
     anotacao.remove({_id: req.body.id}).then(()=>{
         console.log("removido com sucesso!")
         res.redirect('/admin/anotacoes')
