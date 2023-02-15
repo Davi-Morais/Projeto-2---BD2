@@ -1,6 +1,9 @@
 const Anotacao = require('../models/Anotacao')
 const mongoose = require('mongoose');
-anotacao = mongoose.model('notas')
+const {sessionAura} = require('../db/Neo4jDatabase');
+const crypto = require('crypto');
+anotacao = mongoose.model('notas');
+
 
 exports.Mostrar = async(req, res)=>{
     anotacao.find().then((anotacoes)=>{
@@ -12,10 +15,23 @@ exports.Mostrar = async(req, res)=>{
 }
 
 exports.AdicionarNota = async(req, res)=>{
+
+    const idBytes = crypto.randomBytes(8); // 8 bytes (64 bits) é suficiente para uma baixa chance de colisão
+    const idHash = crypto.createHash('sha256').update(idBytes).digest('hex');
+
     const newAnotacao = {
         titulo: req.body.titulo,
-        conteudo: req.body.conteudo
+        conteudo: req.body.conteudo,
+        id: idHash
     }
+
+    try {
+        const result = await sessionAura.run(`CREATE (a: Annotation{id: '${idHash}'})`);
+        sessionAura.close();
+  
+    }catch (error) {
+        console.error(error);
+    } 
 
     new anotacao(newAnotacao).save().then(()=>{
         res.redirect('/admin/anotacoes')

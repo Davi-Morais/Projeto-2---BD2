@@ -4,7 +4,6 @@ const anotacao_controller = require('../controllers/anotacao_controller');
 const usuario_controller = require('../controllers/usuario_controller');
 const middleware = require('../middlewares/middleware');
 const {checkToken} = require('../middlewares/middleware');
-const relaciomento = require('../controllers/Relaciomento')
 router.use(middleware.middlewareGlobal );
 
 

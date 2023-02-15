@@ -12,6 +12,10 @@ const anotacao = new Schema({
         required: true,
         weights: 1
     },
+    id:{
+        type: String,
+        required: true
+    }
     
 })
 anotacao.index({titulo: 'text', conteudo: 'text'})
