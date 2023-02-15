@@ -12,7 +12,7 @@ const anotacao = new Schema({
         required: true,
         weights: 1
     },
-    id:{
+    idHash:{
         type: String,
         required: true
     }

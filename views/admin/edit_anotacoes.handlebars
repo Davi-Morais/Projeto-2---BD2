@@ -4,6 +4,7 @@
     <div class="card-body" style="font-size: large;">
         <form action="/admin/anotacoes/edit" method="POST">
             <input type="hidden" name="id" value="{{anotacao.id}}">
+            <input type="hidden" name="idHash" value="{{anotacao.idHash}}">
             <label for="titulo"><h5 class="card-title">Titulo: </h5> </label>
             <input type="text" name="titulo" id="titulo" placeholder="Titulo da anotação" class="form-control" value="{{anotacao.titulo}}"><br>
             <label for="conteudo"><h5 class="card-title">Conteudo: </h5></label>

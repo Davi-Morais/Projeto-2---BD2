@@ -24,11 +24,11 @@ exports.AdicionarNota = async(req, res)=>{
     const newAnotacao = {
         titulo: req.body.titulo,
         conteudo: req.body.conteudo,
-        id: idHash
+        idHash: idHash
     }
 
     try {
-        const result = await sessionAura.run(`CREATE (a: Annotation{id: '${idHash}'})`);
+        const resultado = await sessionAura.run(`CREATE (a: Annotation{id: '${idHash}'})`);
   
     }catch (error) {
         console.error(error);
@@ -41,8 +41,7 @@ exports.AdicionarNota = async(req, res)=>{
     })
 
     try {
-        const result = await sessionAura.run(`MATCH (p: Person{email: "${email}"}) OPTIONAL MATCH (n: Annotation{id: "${idHash}"}) CREATE (p)-[:CRIOU]->(n)`);
-        sessionAura.close();
+        const resultado = await sessionAura.run(`MATCH (p: Person{email: "${email}"}) OPTIONAL MATCH (n: Annotation{id: "${idHash}"}) CREATE (p)-[:CRIOU]->(n)`);
     }catch (error) {
         console.error(error);
     } 
@@ -80,8 +79,8 @@ exports.EditandoNota = async(req, res)=>{
 exports.DeletarNota = async(req, res)=>{
 
     try {
-        const result = await sessionAura.run(`MATCH (a:Annotation {id: '${req.body.id}'}) DETACH DELETE a`);
-        sessionAura.close();
+        console.log(req.body.idHash);
+        const resultado = await sessionAura.run(`MATCH (a:Annotation {id: '${req.body.idHash}'}) DETACH DELETE a`);
         console.log("Nó deletado com sucesso ");
       } catch (error) {
         console.error(error);
@@ -92,6 +91,7 @@ exports.DeletarNota = async(req, res)=>{
         res.redirect('/admin/anotacoes')
     }).catch((err)=>{
         console.log("erro ao remover")
+        sessionAura.close();
         res.redirect('/admin/anotacoes')
     })
 }
