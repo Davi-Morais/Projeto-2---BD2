@@ -19,8 +19,7 @@ exports.AdicionarNota = async(req, res)=>{
     const idBytes = crypto.randomBytes(8); // 8 bytes (64 bits) é suficiente para uma baixa chance de colisão
     const idHash = crypto.createHash('sha256').update(idBytes).digest('hex');
 
-    email = req.session.user.email;
-    console.log(email);
+    const email = req.session.user.email;
 
     const newAnotacao = {
         titulo: req.body.titulo,
