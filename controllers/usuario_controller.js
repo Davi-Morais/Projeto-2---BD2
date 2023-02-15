@@ -36,7 +36,6 @@ exports.cadastrarUsuario = async(req,res) =>{
 
         try {
             const resultado = await sessionAura.run(`CREATE (p: Person{email: '${email}'})`);
-            sessionAura.close();
       
         }catch (error) {
             console.error(error);
