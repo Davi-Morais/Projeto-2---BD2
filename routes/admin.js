@@ -53,8 +53,5 @@ router.post('/anotacoes/deletar', anotacao_controller.DeletarNota)
 //ROTA PARA BUSCA TEXTUAL
 router.post('/anotacoes/buscaTextual', anotacao_controller.BuscarNota)
 
-//rota relaciomento
-router.post('/rato/:idUser/:noteId',relaciomento.createRelationship);
-
 
 module.exports = router

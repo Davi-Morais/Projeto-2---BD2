@@ -14,7 +14,8 @@ const driver = neo4j.driver(process.env.URI, neo4j.auth.basic(process.env.USER, 
 //   .catch(error => {
 //     console.error('Error connecting to Neo4j database:', error);
 //   });
-  const sessionAura = driver.session();  
+
+const sessionAura = driver.session();  
 
 module.exports = { sessionAura };
 
