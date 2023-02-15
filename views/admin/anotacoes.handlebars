@@ -8,6 +8,7 @@
 </div>
 
 <hr>
+{{#if user}}
 {{#each anotacoes}}
     <div class="card">
         <div class="card-body">
@@ -19,9 +20,9 @@
                 <button class="btn btn-outline-danger mt-2 bi bi-file-earmark-x-fill" type="submit" style="font-size:15px"></button>
             </form>
         </div>
-    </div>
+    {{else}}
+        <h4 class="p-3 mb-3 bg-gradient text-black" style="border-radius: 10px;">Faça login para ver as anotações!</h4> 
+    {{/each}}
 {{else}}
-    
-{{/each}}
 
 
